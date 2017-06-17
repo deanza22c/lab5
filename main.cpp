@@ -33,29 +33,70 @@ int PartitionB(int *A, int start, int end, ofstream &file, int pivot, int pIndex
 
 
 /*
-void MergeSort();
+//PRIMARY FUNCTION IN MERGE SORT, RECURSIVELY CALLS ITSELF
+void MergeSort(int *A, int n);
 //L = the left array which was split from the main array
 //R = the right array which was split from the main array
 //A = the main array
-void Merge(int *L, int *R, int *A);
+void merge(int *A, int *L, int leftCount, int *R, int rightCount);
 //SubMerge, does the job of an interative merge, recursively
 //those submerge must hold the values for I and J
 //this variableswhich hold the index of the next value which must be merged
 void SubMerge(int *L, int *R, int *A, int i, int j);
+//CUSTOM SPLITING FUNCTIONS FOR RIGHT AND LEFT SIDE
+void splitL(int *L, int *A, int i, int mid);
+void splitR(int *R, int *A, int i, int n);
+void s1merge();
 
-
-void merge(int *L, int *R, int *A){
-	int i, j, nL, nR;
-	nL = 
-	if
+void merge(int *A, int *L, int leftCount, int *R, int rightCount){
+	// i - to mark the index of left aubarray (L)
+	// j - to mark the index of right sub-raay (R)
+	// k - to mark the index of merged subarray (A)
+	//IF I HAD MORE TIME ID USE POINTS INSIDE OF MY 
+	//RECURSIVE FUNCTIONS THAT WORK LIKE WHILE LOOPS TO MERGE
+	int *i = 0;
+	int *j = 0;
+	int *k = 0;
+	//2 OR 3 MORE RECURSIVE FUNCTIONS GO HERE.
 }
 
-
-
-void MergeSort(){
-
+void MergeSort(int *A, int n){
+	int mid;int *L;int *R;
+	// base condition - if the array has less than two element
+	if (n < 2) return; 
+	// find the mid index.
+	mid = n / 2;  
+	// create left and right subarrays
+	L = (int*)malloc(mid*sizeof(int));
+	R = (int*)malloc((n - mid)*sizeof(int));
+	//split the array in 2
+	splitL(L, A, 0, mid);
+	splitR(R, A, mid, n);
+	//continue spliting each side until base case triggered
+	MergeSort(L, mid); 
+	MergeSort(R, n - mid); 
+	//merge from smallest to top
+	merge(A, L, mid, R, n - mid); 
 }
-*/
+//CUSTOM SPLITING FUNCTION FOR THE RIGHT SIDE - FUNCTIONS AS FOR LOOP
+void splitL(int *L, int *A, int i, int mid){
+	L[i] = A[i];
+	i++;
+	if (i < mid){
+		return;
+	}
+	splitL(L, A, i, mid);
+}
+//CUSTOM SPLITING FUNCTION FOR THE LEFT SIDE - FUNCTIONS AS FOR LOOP
+void splitL(int *R, int *A, int i, int n){
+	R[i] = A[i];
+	i++;
+	if (i < n){
+		return;
+	}
+	splitR(R, A, i, n);
+}
+//*/
 
 
 //recursiveCP is short for "recursive cout and print"
